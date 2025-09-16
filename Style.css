@@ -1,0 +1,123 @@
+body {
+  margin: 0;
+  font-family: "Georgia", serif;
+  background: linear-gradient(135deg, #a8edea, #fed6e3); /* Mint green → Peach gradient */
+  color: #4b2c4d;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2rem;
+  color: #a81d5d;
+  margin-bottom: 30px;
+}
+
+/* Layout for 3 columns */
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Side Images */
+.side-images {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.side-images img {
+  max-width: 160px;
+  border-radius: 16px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+  transition: transform 0.3s ease; /* Smooth transition for hover */
+}
+
+/* Add a dynamic zig-zag effect and hover animation */
+.zig:nth-child(odd) {
+  transform: rotate(-4deg);
+}
+
+.zig:nth-child(even) {
+  transform: rotate(4deg);
+}
+
+.zig:hover {
+  transform: rotate(0) scale(1.05);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Message */
+.message {
+  flex: 1;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 0 10px;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+/* Footer */
+.footer {
+  margin-top: 40px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #a81d5d;
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 1s;
+}
+
+/* --- UPDATED MOBILE RESPONSIVE SECTION --- */
+@media (max-width: 768px) {
+  /* Stack the main message and images vertically */
+  .layout {
+    flex-direction: column;
+    align-items: center;
+    gap: 35px; /* Increase gap for mobile view */
+  }
+
+  /* Arrange both sets of images into a single, neat gallery */
+  .side-images {
+    display: grid;
+    /* Create a responsive grid that fits as many photos as possible */
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    width: 95%; /* Use most of the screen width */
+    flex-direction: row; /* Override desktop column direction */
+  }
+
+  .side-images img {
+    width: 100%; /* Ensure image fills the grid cell */
+    max-width: none; /* Override desktop max-width */
+    height: auto;
+    border-radius: 12px;
+  }
+  
+  /* Remove the zig-zag effect on mobile for a cleaner grid */
+  .zig:nth-child(odd),
+  .zig:nth-child(even) {
+      transform: rotate(0);
+  }
+}
+
+/* --- THIS IS THE MISSING PIECE --- */
+@keyframes fadeIn {
+  to { 
+    opacity: 1; 
+  }
+}
